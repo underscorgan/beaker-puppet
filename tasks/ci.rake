@@ -322,15 +322,15 @@ def pre_suites(type)
   when :git
     [
       #"#{beaker_root}/setup/common/000-delete-puppet-when-none.rb",
-      "#{beaker_root}/setup/git/000_EnvSetup.rb",
-      "#{beaker_root}/setup/git/010_TestSetup.rb",
-      "#{beaker_root}/setup/common/011_Install_Puppet_Server.rb",
-      "#{beaker_root}/setup/git/020_PuppetUserAndGroup.rb",
-      "#{beaker_root}/setup/git/070_InstallCACerts.rb",
-      "#{beaker_root}/setup/common/025_StopFirewall.rb",
-      "#{beaker_root}/setup/common/030_StopSssd.rb",
-      "#{beaker_root}/setup/common/040_ValidateSignCert.rb",
-      "#{beaker_root}/setup/common/045_EnsureMasterStarted.rb",
+      #"#{beaker_root}/setup/git/000_EnvSetup.rb",
+      #"#{beaker_root}/setup/git/010_TestSetup.rb",
+      #"#{beaker_root}/setup/common/011_Install_Puppet_Server.rb",
+      #"#{beaker_root}/setup/git/020_PuppetUserAndGroup.rb",
+      #"#{beaker_root}/setup/git/070_InstallCACerts.rb",
+      #"#{beaker_root}/setup/common/025_StopFirewall.rb",
+      #"#{beaker_root}/setup/common/030_StopSssd.rb",
+      #"#{beaker_root}/setup/common/040_ValidateSignCert.rb",
+      #"#{beaker_root}/setup/common/045_EnsureMasterStarted.rb",
     ]
   end
   presuites.join(',')
