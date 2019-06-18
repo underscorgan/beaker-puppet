@@ -339,7 +339,7 @@ def pre_suites(type)
     if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true'
       [run_always, run_always_last].flatten
     else
-      [run_always, run_on_completion, run_always_last].flatten
+      [run_always, run_on_creation, run_always_last].flatten
     end
   end
   presuites.join(',')
