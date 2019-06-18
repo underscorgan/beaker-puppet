@@ -336,7 +336,7 @@ def pre_suites(type)
       "#{beaker_root}/setup/common/040_ValidateSignCert.rb",
       "#{beaker_root}/setup/common/045_EnsureMasterStarted.rb",
     ]
-    if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true'
+    if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true' || ENV['BEAKER_USE_EXISTING_MASTER'] == 'true'
       [run_always, run_always_last].flatten
     else
       [run_always, run_on_creation, run_always_last].flatten
