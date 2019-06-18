@@ -320,24 +320,26 @@ def pre_suites(type)
       "#{beaker_root}/setup/git/000_EnvSetup.rb",
     ]
   when :git
-    base_provision = [
+    run_always = [
       "#{beaker_root}/setup/common/000-delete-puppet-when-none.rb",
       "#{beaker_root}/setup/git/000_EnvSetup.rb",
       "#{beaker_root}/setup/git/010_TestSetup.rb",
     ]
-    extras = [
+    run_on_creation = [
       "#{beaker_root}/setup/common/011_Install_Puppet_Server.rb",
       "#{beaker_root}/setup/git/020_PuppetUserAndGroup.rb",
       "#{beaker_root}/setup/git/070_InstallCACerts.rb",
       "#{beaker_root}/setup/common/025_StopFirewall.rb",
       "#{beaker_root}/setup/common/030_StopSssd.rb",
+    ]
+    run_always_last = [
       "#{beaker_root}/setup/common/040_ValidateSignCert.rb",
       "#{beaker_root}/setup/common/045_EnsureMasterStarted.rb",
     ]
-    if ENV['BEAKER_USE_EXISTING_AGENT'] == true
-      base_provision
+    if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true'
+      [run_always, run_always_last].flatten
     else
-      [base_provision, extras].flatten
+      [run_always, run_on_completion, run_always_last].flatten
     end
   end
   presuites.join(',')
