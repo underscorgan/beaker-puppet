@@ -331,9 +331,9 @@ def pre_suites(type)
       "#{beaker_root}/setup/git/070_InstallCACerts.rb",
       "#{beaker_root}/setup/common/025_StopFirewall.rb",
       "#{beaker_root}/setup/common/030_StopSssd.rb",
+      "#{beaker_root}/setup/common/040_ValidateSignCert.rb",
     ]
     run_always_last = [
-      "#{beaker_root}/setup/common/040_ValidateSignCert.rb",
       "#{beaker_root}/setup/common/045_EnsureMasterStarted.rb",
     ]
     if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true' || ENV['BEAKER_USE_EXISTING_MASTER'] == 'true'
