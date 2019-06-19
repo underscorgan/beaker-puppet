@@ -268,7 +268,7 @@ def beaker_suite(type)
     beaker(:exec, 'post-suite')
   ensure
     preserve_hosts = ENV['OPTIONS'].include?('--preserve-hosts=always') if ENV['OPTIONS']
-    #beaker(:destroy) unless preserve_hosts
+    beaker(:destroy) unless preserve_hosts
   end
 end
 
