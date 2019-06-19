@@ -299,6 +299,11 @@ end
 def pre_suites(type)
   beaker_root = Pathname.new(File.dirname(__dir__)).relative_path_from(Pathname.new(Dir.pwd))
 
+  if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true'|| ENV['BEAKER_USE_EXISTING_MASTER'] == 'true'
+    puts "USING EXISTING CONTAINER!"
+  else
+    puts "not using existing container!"
+  end
   presuites = case type
   when :aio
     [
@@ -336,7 +341,7 @@ def pre_suites(type)
     run_always_last = [
       "#{beaker_root}/setup/common/045_EnsureMasterStarted.rb",
     ]
-    if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true' || ENV['BEAKER_USE_EXISTING_MASTER'] == 'true'
+    if ENV['BEAKER_USE_EXISTING_CONTAINER'] == 'true'|| ENV['BEAKER_USE_EXISTING_MASTER'] == 'true'
       [run_always, run_always_last].flatten
     else
       [run_always, run_on_creation, run_always_last].flatten
