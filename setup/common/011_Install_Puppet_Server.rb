@@ -7,6 +7,6 @@ test_name "Install Puppet Server" do
     :nightly_builds_url => ENV['NIGHTLY_BUILDS_URL'],
     :dev_builds_url => ENV['DEV_BUILDS_URL']
   }
-  puts "master === #{master}, type === #{type(master)}"
+  puts "master === #{master}, type === #{master.class}"
   install_puppetserver_on(master, opts)
 end
