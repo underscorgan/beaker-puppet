@@ -76,6 +76,10 @@ A4GBAFjOKer89961zgK5F7WF0bnj4JXMJTENAKaSbn+2kmOeUJXRmm/kEd5jhW6Y
 EOM
 
 hosts.each do |host|
+  if host['use_existing_container'] == 'true'
+    puts "SKIPPING INSTALL CA CERTS"
+    next
+  end
   step "Installing Geotrust CA cert"
   create_remote_file(host, "geotrustglobal.pem", GEOTRUST_GLOBAL_CA)
   on host, "chmod 644 geotrustglobal.pem"
