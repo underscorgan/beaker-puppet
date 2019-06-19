@@ -299,13 +299,6 @@ end
 def pre_suites(type)
   beaker_root = Pathname.new(File.dirname(__dir__)).relative_path_from(Pathname.new(Dir.pwd))
 
-  begin
-    require 'yaml'
-    require 'pp'
-    pp YAML.load(File.read(ENV['HOSTS']))
-  rescue
-    puts "whoops something went wrong reading the hosts"
-  end
   presuites = case type
   when :aio
     [
