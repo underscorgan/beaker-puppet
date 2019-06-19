@@ -1,7 +1,7 @@
 test_name "Validate Sign Cert" do
   need_to_run = false
   hosts.each do |host|
-    need_to_run ||= host['use_existing_container'] == 'true'
+    need_to_run ||= host['use_existing_container'] != 'true'
   end
   if need_to_run
     skip_test 'not testing with puppetserver' unless @options['is_puppetserver']
