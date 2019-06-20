@@ -76,7 +76,7 @@ step "Unpack puppet-runtime" do
   agents.each do |host|
     # we only need to unpack the runtime if the host doesn't already have runtime
     # and if it's a not an existing container
-    need_to_run ||= (host['has_runtime'] != 'true' && host['use_existing_container'] != 'true')
+    need_to_run ||= (!host['has_runtime'] && !host['use_existing_container'])
   end
 
   if need_to_run
@@ -95,8 +95,7 @@ step "Unpack puppet-runtime" do
     runtime_suffix = ".tar.gz"
 
     agents.each do |host|
-      next if host['has_runtime'] == 'true'
-      next if host['use_existing_container'] == 'true'
+      next if host['has_runtime'] || host['use_existing_container']
 
       platform_tag = host['packaging_platform']
       if platform_tag =~ /windows/

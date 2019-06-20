@@ -1,7 +1,7 @@
 test_name "Validate Sign Cert" do
   need_to_run = false
   hosts.each do |host|
-    need_to_run ||= host['use_existing_container'] != 'true'
+    need_to_run ||= !host['use_existing_container']
   end
   if need_to_run
     skip_test 'not testing with puppetserver' unless @options['is_puppetserver']
@@ -40,7 +40,7 @@ test_name "Validate Sign Cert" do
 
       # In Puppet 6, we want to be using an intermediate CA
       unless version_is_less(puppet_version, "5.99")
-        on master, 'puppetserver ca setup' unless master['use_existing_container'] == 'true'
+        on master, 'puppetserver ca setup' unless master['use_existing_container']
       end
       with_puppet_running_on(master, master_opts) do
         step "Agents: Run agent --test with autosigning enabled to get cert"
